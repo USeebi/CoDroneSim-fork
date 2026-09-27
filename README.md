@@ -1,3 +1,28 @@
+# codrone-simulator Fork
+
+This branch will enable all Jupyter Notebook to work in Colab with Internet accessable 10botics Drone Simulator setup.
+
+Use Cloudflare Tunnel to expose securely the Donkeycar simulator's Unity3D localhost UDP connection for socket access inside a Google Colab notebook. You can do so with TryCloudflare using the documentation available [here](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/).
+
+![](tunnel.png)
+
+### Launch the tunnel server and client with cloudflared
+
+Server on localhost
+
+
+    .\cloudflared tunnel --url  ssh://localhost:22
+
+Client on Colab
+
+
+    !ssh -vv -Nf STEMroom
+
+    !socat -v UDP4-LISTEN:5000,reuseaddr,fork tcp:localhost:20000 &
+
+where STEMroom is the host computer name of the Quick Tunnel created by the server.
+
+
 # Codrone Simulator
 
 ![image](https://github.com/user-attachments/assets/3a7d0107-2747-41c6-9f2b-0d075df50f97)
